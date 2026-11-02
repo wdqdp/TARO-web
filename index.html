@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f3">
+  <meta name="description" content="TARO uses tactile understanding and global failure history to recover from contact failures online and resume robotic manipulation tasks.">
+  <meta property="og:title" content="TARO — Online Failure Recovery">
+  <meta property="og:description" content="Feel the failure. Reason through recovery. Resume the task.">
+  <meta property="og:type" content="website">
+  <title>TARO · Tactile Understanding for Online Failure Recovery</title>
+  <link rel="icon" href="taro-icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="media-data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="#" aria-label="TARO home"><img class="brand-symbol" src="taro-icon.svg" width="32" height="32" alt="">TARO<span class="brand-dot">.</span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">☰</span></button>
+      <nav id="main-nav" aria-label="Main navigation">
+        <a href="#method">Method</a><a href="#results">Results</a><a href="#recovery">Recovery</a><a href="#demos">Demos</a><a href="#comparisons">Comparisons</a>
+        <span class="paper-pending nav-paper">Paper coming soon</span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero container" aria-labelledby="paper-title">
+      <div class="eyebrow"><span class="tiny-orbit" aria-hidden="true"></span> TACTILE INTELLIGENCE / ONLINE RECOVERY</div>
+      <div class="hero-name" aria-hidden="true">TARO<img class="hero-taro" src="taro-icon.svg" width="96" height="96" alt=""></div>
+      <h1 id="paper-title"><span class="accent-letter">TA</span>ctile Understanding and History-Guided <span class="accent-letter">R</span>easoning<br class="desktop-break"> for <span class="accent-letter">O</span>nline Failure Recovery</h1>
+      <p class="hero-summary">When contact goes wrong, robots need a way forward.<br> TARO feels the failure, reasons about recovery, and resumes the task.</p>
+      <p class="authors">Anonymous authors <span class="author-divider">/</span> Anonymous submission</p>
+      <div class="hero-actions">
+        <span class="paper-pending button button-dark">Paper coming soon</span>
+        <a class="button button-light" href="#demos">Watch the robot <span aria-hidden="true">↓</span></a>
+        <span class="coming-soon"><span class="status-dot"></span> Code coming soon</span>
+      </div>
+
+      <div class="hero-film">
+        <div class="film-toolbar"><span><span class="live-dot" aria-hidden="true"></span> REAL-WORLD AUTONOMOUS TRIAL</span><span>Black-box <span class="toolbar-divider">/</span> 2× speed</span></div>
+        <div class="hero-video-wrap">
+          <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="blackbox-c2-poster.jpg" aria-label="Black-box autonomous trial, edited autonomous trial at twice real-time speed">
+            <source src="blackbox-c2.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="blackbox-c2.mp4">Download the trial.</a>
+          </video>
+          <div class="film-note"><span class="film-note-label">BEYOND THE FIRST ATTEMPT</span><strong>One task. Three recoveries.<br>A successful fourth grasp.</strong></div>
+          <button id="hero-play" class="film-control" type="button" aria-label="Pause preview"><span aria-hidden="true">Ⅱ</span></button>
+        </div>
+        <div class="film-caption"><span>Unknown center of mass. No teleoperation.</span><a href="#recovery">Follow the recovery <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="hero-stats" aria-label="Research highlights">
+        <div><strong>85<span>%</span></strong><p>Overall task success</p></div>
+        <div><strong>+46.25<span> pp</span></strong><p>Over the no-tactile baseline</p></div>
+        <div><strong>4</strong><p>Real-world manipulation tasks</p></div>
+        <div class="stat-context">20 trials per task, per method.<br>Contact-rich tasks. Same-episode recovery.</div>
+      </div>
+    </section>
+
+    <section class="idea-section section-pad" aria-labelledby="idea-title">
+      <div class="container idea-grid">
+        <div><p class="section-kicker">THE IDEA</p><h2 id="idea-title">A failure is feedback.<br><em>Touch makes it useful.</em></h2></div>
+        <div class="idea-copy"><p>Vision alone can miss a stuck cap, a hidden obstacle, or an unbalanced grasp. Tactile feedback reveals what happens at contact.</p><p>TARO turns that feedback into a failure diagnosis, uses previous failures to decide how to recover, and switches back to the task when the recovery is complete.</p><a class="text-link" href="#method">See how it works <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="container idea-flow" aria-label="The TARO recovery loop">
+        <div><span class="step-number">01</span><h3>Feel</h3><p>Describe dynamic contact.</p><span class="flow-tag">Tactile understanding</span></div><span class="flow-arrow" aria-hidden="true">→</span>
+        <div><span class="step-number">02</span><h3>Reason</h3><p>Diagnose. Remember. Plan.</p><span class="flow-tag">Global failure history</span></div><span class="flow-arrow" aria-hidden="true">→</span>
+        <div><span class="step-number">03</span><h3>Recover</h3><p>Adjust, then resume the task.</p><span class="flow-tag">Asynchronous assessment</span></div>
+      </div>
+    </section>
+
+    <section id="method" class="container section-pad" aria-labelledby="method-title">
+      <div class="section-heading"><div><p class="section-kicker">UNDER THE HOOD</p><h2 id="method-title">From contact signals<br>to a closed recovery loop.</h2></div><p>A shared vision-language-action backbone combines<br>tactile semantics, failure reasoning, and action generation.</p></div>
+      <div class="method-columns">
+        <article><span class="method-number">01 / REPRESENT</span><h3>Touch becomes text.</h3><p>A lightweight CNN–TCN descriptor summarizes temporal tactile signals from both fingers into contact area, three-axis forces, and rotation, referenced to the left sensor.</p></article>
+        <article><span class="method-number">02 / INTERPRET & PLAN</span><h3>Local contact. Global meaning.</h3><p>Visual observations and tactile text produce a failure diagnosis in a fixed scene frame. Up to five global failures inform the next recovery direction and magnitude.</p></article>
+        <article><span class="method-number">03 / CLOSE THE LOOP</span><h3>Know when to intervene.</h3><p>Need initiates recovery; End assesses when the current recovery is complete. Assessments overlap physical execution so the robot can interrupt and resume actions.</p></article>
+      </div>
+      <figure class="method-figure"><button class="figure-button" type="button" data-figure="fig1.webp" data-title="TARO method overview" aria-label="Enlarge the TARO method overview"><img src="fig1.webp" width="3096" height="1528" loading="lazy" alt="TARO framework: temporal tactile descriptor, local-to-global failure interpretation, shared VLM and action expert, and asynchronous execution and recovery loop"><span class="enlarge-label">Enlarge figure <span aria-hidden="true">↗</span></span></button><figcaption>Temporal tactile descriptions ground failure diagnosis. Global failure history guides recovery planning. Need and End connect task execution and recovery.</figcaption></figure>
+      <div class="control-loop" aria-label="Execution and recovery phase transitions"><span class="phase execution-phase">Task execution</span><span class="loop-connector"><b>Need</b><span>Diagnose → Plan</span></span><span class="phase recovery-phase">Recovery</span><span class="loop-connector"><b>End</b><span>Resume task ↩</span></span></div>
+      <p class="method-footnote"><strong>Two histories, two roles.</strong> Global failure history informs the next recovery plan. Recent robot motion history helps End assess progress toward the current plan.</p>
+    </section>
+
+    <section id="results" class="results-section section-pad" aria-labelledby="results-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="section-kicker">THE EVIDENCE</p><h2 id="results-title">Better recovery.<br>More completed tasks.</h2></div><p>Four real-world tasks, 20 trials per task per method.<br>Compared with a separately trained no-tactile recovery baseline.</p></div>
+        <div class="results-layout"><div class="results-summary"><span class="big-result">85<span>%</span></span><h3>overall task success</h3><p>68 of 80 trials completed, compared with 31 of 80 for the no-tactile baseline.</p><span class="improvement">+46.25 percentage points</span><p class="result-detail">The baseline removes tactile descriptions from Need, End, and Failure, with the remaining settings held identical.</p></div>
+          <div class="chart-panel"><div class="chart-heading"><h3>Task success rate</h3><div class="chart-legend"><span><i class="legend-taro"></i>TARO</span><span><i class="legend-base"></i>w/o tactile</span></div></div>
+            <div class="bar-chart" role="img" aria-label="Task success rates: Black-box, TARO 90 percent and baseline 15 percent; Book, 80 and 45; Sponge, 80 and 40; Bottle, 90 and 55.">
+              <div class="chart-row"><span class="chart-task">Black-box</span><div class="bar-pair"><div class="bar taro-bar" style="--value:90%"><span>90%</span></div><div class="bar base-bar" style="--value:15%"><span>15%</span></div></div></div>
+              <div class="chart-row"><span class="chart-task">Book</span><div class="bar-pair"><div class="bar taro-bar" style="--value:80%"><span>80%</span></div><div class="bar base-bar" style="--value:45%"><span>45%</span></div></div></div>
+              <div class="chart-row"><span class="chart-task">Sponge</span><div class="bar-pair"><div class="bar taro-bar" style="--value:80%"><span>80%</span></div><div class="bar base-bar" style="--value:40%"><span>40%</span></div></div></div>
+              <div class="chart-row"><span class="chart-task">Bottle</span><div class="bar-pair"><div class="bar taro-bar" style="--value:90%"><span>90%</span></div><div class="bar base-bar" style="--value:55%"><span>55%</span></div></div></div>
+              <div class="chart-axis"><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div>
+            </div>
+            <details class="data-details"><summary>View exact trial counts <span aria-hidden="true">+</span></summary><div class="table-scroll"><table><caption>Successful trials / total trials, from Table 1.</caption><thead><tr><th scope="col">Task</th><th scope="col">w/o tactile</th><th scope="col">TARO</th></tr></thead><tbody><tr><th scope="row">Black-box</th><td>3 / 20</td><td>18 / 20</td></tr><tr><th scope="row">Book</th><td>9 / 20</td><td>16 / 20</td></tr><tr><th scope="row">Sponge</th><td>8 / 20</td><td>16 / 20</td></tr><tr><th scope="row">Bottle</th><td>11 / 20</td><td>18 / 20</td></tr><tr><th scope="row">Overall</th><td>31 / 80</td><td>68 / 80</td></tr></tbody></table></div></details>
+          </div>
+        </div>
+        <div class="metric-strip"><div><span>FAILURE DETECTION</span><strong>52.78% <b>→</b> 94.12%</strong></div><div><span>RECOVERY SUCCESS</span><strong>37.50% <b>→</b> 85.88%</strong></div><div><span>PLAN ACCURACY</span><strong>50.85% <b>→</b> 97.53%</strong></div></div>
+        <p class="media-disclosure">Overall event metrics use their respective failure or plan denominators; they are distinct from task success. See Table 1 in the paper for definitions and counts. The demo videos are representative examples.</p>
+      </div>
+    </section>
+
+    <section id="recovery" class="recovery-section section-pad" aria-labelledby="recovery-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="section-kicker">A CLOSER LOOK / BLACK-BOX</p><h2 id="recovery-title">Remember the failure.<br><em>Refine the next move.</em></h2></div><p>The box looks the same. Its center of mass does not.<br>Follow one edited trial from the first lift to success.</p></div>
+        <div class="recovery-layout">
+          <div class="recovery-view"><video id="recovery-video" controls playsinline preload="metadata" poster="blackbox-c2-poster.jpg" aria-label="Edited Black-box C2 trial with selectable annotated recovery stages"><source src="blackbox-c2.mp4" type="video/mp4"></video><div class="recovery-caption"><span class="pill-dot"></span><span id="recovery-stage-label">Edited trial · Select a stage to explore</span><button id="restart-trial" type="button">Restart <span aria-hidden="true">↺</span></button></div></div>
+          <div class="recovery-story" aria-label="Annotated recovery stages">
+            <p class="story-intro">WHY HISTORY MATTERS</p>
+            <button class="story-step" data-time="9" type="button"><span class="story-index">01</span><span><strong>Start with a larger correction.</strong><span>The first grasp tilts. TARO moves left <em>moderately</em> before regrasping.</span><span class="plan-chip">← LEFT / MODERATELY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
+            <button class="story-step" data-time="19" type="button"><span class="story-index">02</span><span><strong>A reversal calls for a smaller move.</strong><span>The next grasp tilts in the opposite direction. The previous correction suggests overshoot.</span><span class="plan-chip">→ RIGHT / SLIGHTLY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
+            <button class="story-step" data-time="29" type="button"><span class="story-index">03</span><span><strong>Refine, then try again.</strong><span>Another tilt prompts a further small rightward correction. The fourth grasp succeeds.</span><span class="plan-chip">→ RIGHT / SLIGHTLY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
+            <p class="story-source">Stage descriptions are annotations based on the recorded trial. They are not a live model-output transcript.</p>
+          </div>
+        </div>
+        <div class="history-insight"><span class="insight-mark" aria-hidden="true">↳</span><p><strong>Current touch helps choose a direction.<br>Globally consistent history helps choose the magnitude.</strong></p><p>Interpreting each failure in a fixed scene frame makes feedback comparable across changing grasp orientations.</p></div>
+      </div>
+    </section>
+
+    <section id="demos" class="container section-pad" aria-labelledby="demos-title">
+      <div class="section-heading"><div><p class="section-kicker">IN THE REAL WORLD</p><h2 id="demos-title">Four tasks.<br>Different ways to recover.</h2></div><p>Unexpected contact changes the plan.<br>Watch TARO find its way back to the task.</p></div>
+      <div class="demo-grid">
+        <article class="demo-card" data-task="blackbox">
+          <div class="demo-media"><video controls playsinline preload="none" poster="blackbox-c2-poster.jpg" aria-label="Black-box transfer with three autonomous recovery rounds"><source src="blackbox-c2.mp4" type="video/mp4"><a href="blackbox-c2.mp4">Download Black-box trial</a></video><span class="video-badge">01 / BLACK-BOX</span></div>
+          <div class="condition-controls" aria-label="Black-box experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Black-box</h3><span class="condition-tag">Unknown center of mass</span></div><p>An unbalanced lift reveals a misplaced grasp. TARO adjusts the grasp using contact feedback. In C2, three recovery rounds lead to a successful fourth grasp.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        </article>
+        <article class="demo-card" data-task="book">
+          <div class="demo-media"><video controls playsinline preload="none" poster="book-c4-poster.jpg" aria-label="Book insertion with autonomous recovery from jamming"><source src="book-c4.mp4" type="video/mp4"><a href="book-c4.mp4">Download Book trial</a></video><span class="video-badge">02 / BOOK</span></div>
+          <div class="condition-controls" aria-label="Book experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Book</h3><span class="condition-tag">Constrained insertion</span></div><p>Contact can block insertion under different shelf constraints. TARO adjusts the book to release the constraint and resumes insertion. In C4, it shifts left.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        </article>
+        <article class="demo-card" data-task="bottle">
+          <div class="demo-media"><video controls playsinline preload="none" poster="bottle-c2-poster.jpg" aria-label="Bottle opening with autonomous recovery when the cap remains attached"><source src="bottle-c2.mp4" type="video/mp4"><a href="bottle-c2.mp4">Download Bottle trial</a></video><span class="video-badge">03 / BOTTLE</span></div>
+          <div class="condition-controls" aria-label="Bottle experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Bottle</h3><span class="condition-tag">Hidden attachment state</span></div><p>In the 180° setting, resistance after the first 90° twist reveals that the cap is still attached. TARO resets its grasp, twists again, and removes the cap.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        </article>
+        <article class="demo-card" data-task="sponge">
+          <div class="demo-media"><video controls playsinline preload="none" poster="sponge-c3-poster.jpg" aria-label="Sponge transfer with autonomous recovery from an occluded obstacle"><source src="sponge-c3.mp4" type="video/mp4"><a href="sponge-c3.mp4">Download Sponge trial</a></video><span class="video-badge">04 / SPONGE</span></div>
+          <div class="condition-controls" aria-label="Sponge experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Sponge</h3><span class="condition-tag">Occluded obstacle</span></div><p>A paper disk occludes contact with an obstacle. Across obstacle positions, TARO detects resistance, retreats slightly, lifts the sponge, and continues moving.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        </article>
+      </div>
+      <p class="media-disclosure">All 14 task demonstrations are edited autonomous TARO recordings at 2× speed, without teleoperation. Audio is omitted. Select a condition to explore its recording. <a href="#task-settings">View the experimental settings ↗</a></p>
+    </section>
+
+    <section id="comparisons" class="comparison-section section-pad" aria-labelledby="comparisons-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="section-kicker">WHY TOUCH MATTERS</p><h2 id="comparisons-title">See the failure.<br><em>Understand what is missing.</em></h2></div><p>Without tactile input, recovery can start at the wrong time, follow the wrong direction, or miss resistance.</p></div>
+        <div class="case-tabs" id="tactile-tabs" role="group" aria-label="No-tactile ablation examples"></div>
+        <div class="comparison-layout">
+          <div class="comparison-media"><video id="tactile-video" controls playsinline preload="none" poster="blackbox-wo-tactile-poster.jpg" aria-label="Black-box no-tactile ablation"><source src="blackbox-wo-tactile.mp4" type="video/mp4"></video><div class="case-toolbar"><span>w/o tactile</span><span id="tactile-speed">2× speed</span></div></div>
+          <div class="case-copy" aria-live="polite"><p class="analysis-tag" id="tactile-mechanism">FAILURE DIAGNOSIS</p><h3 id="tactile-title">A tilt in the wrong direction.</h3><p id="tactile-description"></p><span class="failure-tag">Task failed</span><p class="case-detail" id="tactile-detail"></p><a class="text-link" id="tactile-demo-link" href="#demos">See TARO on this task ↗</a></div>
+        </div>
+        <p class="media-disclosure">All five examples are counted as failures under the paper’s task criteria, including forced cap removal and unnecessary recovery without an obstacle. These are separate representative trials, not synchronized or matched recordings. Playback speeds follow the labels in each edited clip.</p>
+      </div>
+    </section>
+
+    <section class="container section-pad analysis-section" aria-labelledby="analysis-title">
+      <div class="section-heading"><div><p class="section-kicker">WHAT MAKES RECOVERY WORK?</p><h2 id="analysis-title">The right move.<br>The right stopping point.</h2></div><p>Recovery needs both a meaningful plan<br>and an assessment of how much has been executed.</p></div>
+      <div class="analysis-grid"><article><div class="analysis-copy"><span class="analysis-tag">MOTION HISTORY</span><h3>Remember how far you moved.</h3><p>Recent robot-state history helps End assess recovery progress. The H100 setting produces displacements closest to the demonstrated magnitudes.</p></div><button class="figure-button" type="button" data-figure="fig4.webp" data-title="Effect of motion history on recovery displacement" aria-label="Enlarge motion history ablation"><img src="fig4.webp" width="3400" height="1700" loading="lazy" alt="Recovery displacement with H0, H30, H60 and H100 motion-history windows, with demonstration reference lines"></button><p class="analysis-note">Black-box, 20 trials per setting. Error bars show standard deviations; “No stop” indicates failure to terminate normally.</p></article>
+      <article><div class="analysis-copy"><span class="analysis-tag">MAGNITUDE SUPERVISION</span><h3>“Slightly” should mean less.</h3><p>Counterfactual supervision changes the plan’s magnitude word and completion target while keeping observations fixed, helping End distinguish smaller and larger recoveries.</p></div><button class="figure-button" type="button" data-figure="fig5.webp" data-title="Effect of counterfactual supervision on recovery magnitude" aria-label="Enlarge magnitude supervision ablation"><img src="fig5.webp" width="3400" height="1700" loading="lazy" alt="Displacement means with and without counterfactual supervision; magnitude gaps with supervision are approximately 31 millimeters"></button><p class="analysis-note">Black-box, 20 trials per setting. With supervision, the displacement gap approaches the demonstrated 30 mm separation.</p></article></div>
+      <div class="motion-examples" aria-labelledby="motion-title">
+        <div class="motion-heading"><div><p class="section-kicker">END NEEDS MOTION HISTORY</p><h3 id="motion-title">A plan also needs a stopping point.</h3></div><p>Without recent motion history, the robot can keep recovering after it should stop.</p></div>
+        <div class="case-tabs" id="history-tabs" role="group" aria-label="Motion history ablation examples"></div>
+        <div class="comparison-layout"><div class="comparison-media"><video id="history-video" controls playsinline preload="none" poster="blackbox-wo-history-poster.jpg" aria-label="Black-box without motion history"><source src="blackbox-wo-history.mp4" type="video/mp4"></video><div class="case-toolbar"><span>w/o motion history</span><span>2× speed</span></div></div><div class="case-copy" aria-live="polite"><p class="analysis-tag">END · RECOVERY TERMINATION</p><h3 id="history-title">The recovery needs a stopping point.</h3><p id="history-description"></p><span class="failure-tag">Task failed</span><p class="case-detail" id="history-detail"></p></div></div>
+      </div>
+      <details id="task-settings" class="setup-details"><summary><span>Explore the experimental setup</span><span aria-hidden="true">+</span></summary><div class="setup-grid"><figure><button class="figure-button" type="button" data-figure="fig6.webp" data-title="Robot platform and tactile sensors" aria-label="Enlarge robot platform figure"><img src="fig6.webp" loading="lazy" width="1400" height="648" alt="Piper robot arm, front camera, wrist camera and paired Xense fingertip tactile sensors"></button><figcaption>Piper arm, front and wrist cameras, and tactile sensors on both fingers.</figcaption></figure><figure><button class="figure-button" type="button" data-figure="fig7.webp" data-title="Task-specific experimental conditions" aria-label="Enlarge task condition figure"><img src="fig7.webp" loading="lazy" width="3404" height="1296" alt="Black-box center-of-mass positions, bookshelf constraints, bottle angles and sponge obstacle configurations"></button><figcaption>Task-specific conditions. Bottle C3 (0°) is illustrative and excluded from reported success rates.</figcaption></figure></div></details>
+    </section>
+
+    <section id="abstract" class="abstract-section section-pad"><div class="container abstract-layout"><div><p class="section-kicker">THE PAPER</p><h2>Abstract</h2><span class="paper-pending text-link">Paper coming soon</span></div><div class="abstract-text"><p>Tactile feedback is increasingly used to refine intended actions in contact-rich manipulation. However, unexpected disturbances in real-world environments can invalidate planned trajectories, requiring robots to understand contact failures and devise new recovery strategies.</p><p>We present TARO, a tactile-driven framework for online failure recovery. A lightweight temporal tactile descriptor discretizes continuous tactile sequences into textual contact descriptions expressed in the left finger sensor’s local coordinate frame. We leverage the fine-tuned vision-language backbone of π<sub>0.5</sub> to interpret contact failures in a global reference frame by integrating visual observations with local tactile descriptions. It then reasons over the global failure history to infer recovery strategies.</p><p>Two binary heads, Need and End, run asynchronously during physical action execution to determine whether to initiate recovery and whether the recovery is complete, respectively. This enables autonomous transitions between execution and recovery and supports online multi-round recovery. Across four real-world contact-rich manipulation tasks, TARO improves mean task success from 38.75% to 85.00% compared with a separately trained recovery baseline without tactile input, a gain of 46.25 percentage points.</p></div></div></section>
+  </main>
+  <footer class="site-footer container"><div><a class="wordmark" href="#">TARO<span class="brand-dot">.</span></a><p>Feel the failure. Reason through recovery. Resume the task.</p></div><div class="footer-meta"><span>Anonymous submission</span><span class="paper-pending">Paper coming soon</span><a href="#main">Back to top ↑</a></div></footer>
+
+  <dialog id="figure-dialog" aria-labelledby="figure-dialog-title"><div class="dialog-heading"><h2 id="figure-dialog-title">Research figure</h2><button id="close-figure" type="button" aria-label="Close figure">Close <span aria-hidden="true">×</span></button></div><div class="dialog-image-wrap"><img id="dialog-image" alt=""></div><p>Scroll to inspect the figure. Press Esc to close.</p></dialog>
+</body>
+</html>
