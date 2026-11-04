@@ -49,19 +49,15 @@
     const select = (clip, button, replace = true) => {
       markChoice(buttons, button);
       card.querySelector('.condition-description').textContent = `${clip.id} · ${clip.description}`;
-      card.querySelector('.demo-setting').textContent = `Condition ${clip.id} · 2× speed`;
-      if (task === 'bottle') card.querySelector('.demo-body > p:not(.condition-description)').textContent = clip.id === 'C1'
-        ? 'With 90° remaining, TARO twists the cap and lifts it off. Switch to C2 to see recovery when the cap remains attached after the first twist.'
-        : 'After the first 90° twist, upward resistance reveals that the cap is still attached. TARO releases and resets its grasp, twists another 90°, and lifts off the cap.';
-      if (task === 'blackbox') card.querySelector('.demo-body > p:not(.condition-description)').textContent = clip.id === 'C2'
-        ? 'An unbalanced lift reveals a misplaced grasp. TARO moves left moderately, then right slightly twice. The fourth grasp succeeds.'
-        : 'The center of mass is hidden from view. TARO uses contact feedback to adjust its grasp and complete the transfer.';
-      if (replace) changeClip(video, clip.media, `${config.name}, condition ${clip.id}, autonomous TARO at 2× speed`);
-      else video.setAttribute('aria-label', `${config.name}, condition ${clip.id}, autonomous TARO at 2× speed`);
+      card.querySelector('.demo-setting').textContent = clip.captioned ? 'Captioned walkthrough' : 'Autonomous trial';
+      card.querySelector('.clip-speed').textContent = mediaData.media[clip.media].speed;
+      const label = `${config.name}, condition ${clip.id}, ${clip.captioned ? 'captioned walkthrough' : 'autonomous trial'}`;
+      if (replace) changeClip(video, clip.media, label);
+      else video.setAttribute('aria-label', label);
     };
     config.clips.forEach(clip => {
       let button;
-      button = buttonFor(clip.id, controls, () => select(clip, button));
+      button = buttonFor(clip.captioned ? `${clip.id} · Captioned` : clip.id, controls, () => select(clip, button));
       button.setAttribute('aria-label', `${clip.id}: ${clip.description}`);
       buttons.push(button);
     });
@@ -105,23 +101,12 @@
   }));
 
   const hero = document.querySelector('#hero-video');
-  const heroButton = document.querySelector('#hero-play');
-  const syncHeroButton = () => {
-    heroButton.setAttribute('aria-label', hero.paused ? 'Play preview' : 'Pause preview');
-    heroButton.firstElementChild.textContent = hero.paused ? '▶' : 'Ⅱ';
-  };
-  heroButton.addEventListener('click', () => {
-    if (hero.paused) hero.play().catch(syncHeroButton); else hero.pause();
-  });
-  hero.addEventListener('play', syncHeroButton);
-  hero.addEventListener('pause', syncHeroButton);
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (reducedMotion.matches) { hero.autoplay = false; hero.pause(); }
   const heroObserver = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) hero.pause();
   }, { threshold: 0.05 });
   heroObserver.observe(hero);
-  syncHeroButton();
 
   // Keep only one trial playing at a time. All inline media remains user-controllable.
   const videos = [...document.querySelectorAll('video')];
@@ -132,51 +117,6 @@
     if (document.hidden) videos.forEach(video => video.pause());
   });
 
-  const trial = document.querySelector('#recovery-video');
-  const stageLabel = document.querySelector('#recovery-stage-label');
-  const steps = [...document.querySelectorAll('.story-step')];
-  const setStage = (step) => {
-    steps.forEach(other => {
-      other.classList.toggle('is-selected', other === step);
-      other.setAttribute('aria-pressed', String(other === step));
-    });
-    stageLabel.textContent = step ? `Chapter ${steps.indexOf(step) + 1} · ${step.querySelector('.plan-chip').textContent.trim()}` : 'Edited trial · Select a stage to explore';
-  };
-  let requestedChapter = 0;
-  const playTrialFrom = async (seconds, step) => {
-    const request = ++requestedChapter;
-    trial.pause();
-    if (trial.readyState < 1) {
-      try {
-        await new Promise((resolve, reject) => {
-          const loaded = () => { cleanup(); resolve(); };
-          const failed = () => { cleanup(); reject(new Error('Video metadata unavailable')); };
-          const cleanup = () => {
-            trial.removeEventListener('loadedmetadata', loaded);
-            trial.removeEventListener('error', failed);
-          };
-          trial.addEventListener('loadedmetadata', loaded, { once: true });
-          trial.addEventListener('error', failed, { once: true });
-          if (trial.networkState === HTMLMediaElement.NETWORK_EMPTY) trial.load();
-        });
-      } catch { stageLabel.textContent = 'Video unavailable · Please reload and try again'; return; }
-    }
-    if (request !== requestedChapter) return;
-    trial.currentTime = seconds;
-    setStage(step);
-    trial.play().catch(() => {});
-  };
-  steps.forEach((step, index) => {
-    step.dataset.time = mediaData.chapters[index];
-    step.setAttribute('aria-pressed', 'false');
-    step.addEventListener('click', () => {
-      playTrialFrom(Number(step.dataset.time), step);
-    });
-  });
-  document.querySelector('#restart-trial').addEventListener('click', () => {
-    playTrialFrom(0, null);
-  });
-
   const dialog = document.querySelector('#figure-dialog');
   const dialogImage = document.querySelector('#dialog-image');
   let figureTrigger = null;
@@ -184,6 +124,7 @@
     figureTrigger = button;
     dialogImage.src = button.dataset.figure;
     dialogImage.alt = button.querySelector('img').alt;
+    dialog.classList.toggle('task-figure-dialog', button.classList.contains('task-figure'));
     document.querySelector('#figure-dialog-title').textContent = button.dataset.title;
     dialog.showModal();
     document.body.classList.add('dialog-open');

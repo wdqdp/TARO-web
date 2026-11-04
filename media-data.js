@@ -1,4 +1,4 @@
-/* Source of truth for second-edition media. Used by the page and prepare_media.py. */
+/* Source of truth for task walkthroughs, condition trials, and ablations. */
 window.TARO_MEDIA = {
   "tasks": {
     "blackbox": {
@@ -6,45 +6,47 @@ window.TARO_MEDIA = {
       "default": "C2",
       "clips": [
         {
-          "id": "C1",
-          "media": "blackbox-c1",
-          "description": "Center of mass · C1 (leftmost)"
+          "id": "C2",
+          "media": "blackbox-c2-cap",
+          "description": "Weight left of center",
+          "captioned": true
         },
         {
-          "id": "C2",
-          "media": "blackbox-c2",
-          "description": "Center of mass · C2"
+          "id": "C1",
+          "media": "blackbox-c1",
+          "description": "Leftmost weight"
         },
         {
           "id": "C3",
           "media": "blackbox-c3",
-          "description": "Center of mass · C3 (center)"
+          "description": "Centered weight"
         },
         {
           "id": "C4",
           "media": "blackbox-c4",
-          "description": "Center of mass · C4"
+          "description": "Weight right of center"
         },
         {
           "id": "C5",
           "media": "blackbox-c5",
-          "description": "Center of mass · C5 (rightmost)"
+          "description": "Rightmost weight"
         }
       ]
     },
     "book": {
       "name": "Book",
-      "default": "C4",
+      "default": "C1",
       "clips": [
         {
           "id": "C1",
-          "media": "book-c1",
-          "description": "One book on the left"
+          "media": "book-c1-cap",
+          "description": "Three books on the left",
+          "captioned": true
         },
         {
           "id": "C2",
           "media": "book-c2",
-          "description": "One book on the right"
+          "description": "Three books on the right"
         },
         {
           "id": "C3",
@@ -63,35 +65,37 @@ window.TARO_MEDIA = {
       "default": "C2",
       "clips": [
         {
-          "id": "C1",
-          "media": "bottle-c1",
-          "description": "90° remaining angle"
+          "id": "C2",
+          "media": "bottle-c2-cap",
+          "description": "180° remaining twist",
+          "captioned": true
         },
         {
-          "id": "C2",
-          "media": "bottle-c2",
-          "description": "180° remaining angle"
+          "id": "C1",
+          "media": "bottle-c1",
+          "description": "90° remaining twist"
         }
       ]
     },
     "sponge": {
       "name": "Sponge",
-      "default": "C3",
+      "default": "C1",
       "clips": [
         {
           "id": "C1",
-          "media": "sponge-c1",
-          "description": "Obstacle position · C1"
+          "media": "sponge-c1-cap",
+          "description": "Obstacle near the start",
+          "captioned": true
+        },
+        {
+          "id": "C2",
+          "media": "sponge-c2",
+          "description": "Obstacle midway along the path"
         },
         {
           "id": "C3",
           "media": "sponge-c3",
-          "description": "Obstacle position · C3"
-        },
-        {
-          "id": "C4",
-          "media": "sponge-c4",
-          "description": "Obstacle position · C4"
+          "description": "Obstacle near the target"
         }
       ]
     }
@@ -101,14 +105,6 @@ window.TARO_MEDIA = {
       "source": "blackbox/C1.mov",
       "src": "blackbox-c1.mp4",
       "poster": "blackbox-c1-poster.jpg",
-      "cover": 3,
-      "width": 1280,
-      "speed": "2× speed"
-    },
-    "blackbox-c2": {
-      "source": "blackbox/C2.mov",
-      "src": "blackbox-c2.mp4",
-      "poster": "blackbox-c2-poster.jpg",
       "cover": 3,
       "width": 1280,
       "speed": "2× speed"
@@ -133,14 +129,6 @@ window.TARO_MEDIA = {
       "source": "blackbox/C5.mov",
       "src": "blackbox-c5.mp4",
       "poster": "blackbox-c5-poster.jpg",
-      "cover": 3,
-      "width": 1280,
-      "speed": "2× speed"
-    },
-    "book-c1": {
-      "source": "book/C1.mov",
-      "src": "book-c1.mp4",
-      "poster": "book-c1-poster.jpg",
       "cover": 3,
       "width": 1280,
       "speed": "2× speed"
@@ -177,34 +165,10 @@ window.TARO_MEDIA = {
       "width": 1280,
       "speed": "2× speed"
     },
-    "bottle-c2": {
-      "source": "bottle/C2.mov",
-      "src": "bottle-c2.mp4",
-      "poster": "bottle-c2-poster.jpg",
-      "cover": 3,
-      "width": 1280,
-      "speed": "2× speed"
-    },
-    "sponge-c1": {
-      "source": "sponge/C1.mov",
-      "src": "sponge-c1.mp4",
-      "poster": "sponge-c1-poster.jpg",
-      "cover": 3,
-      "width": 1280,
-      "speed": "2× speed"
-    },
     "sponge-c3": {
       "source": "sponge/C3.mov",
-      "src": "sponge-c3.mp4",
-      "poster": "sponge-c3-poster.jpg",
-      "cover": 3,
-      "width": 1280,
-      "speed": "2× speed"
-    },
-    "sponge-c4": {
-      "source": "sponge/C4.mov",
-      "src": "sponge-c4.mp4",
-      "poster": "sponge-c4-poster.jpg",
+      "src": "sponge-c3-revised.mp4",
+      "poster": "sponge-c3-revised-poster.jpg",
       "cover": 3,
       "width": 1280,
       "speed": "2× speed"
@@ -263,6 +227,54 @@ window.TARO_MEDIA = {
       "poster": "book-wo-history-poster.jpg",
       "cover": 3,
       "width": 1920,
+      "speed": "2× speed"
+    },
+    "blackbox-c2-cap": {
+      "source": "blackbox/C2_cap.mov",
+      "src": "blackbox-c2-cap.mp4",
+      "poster": "blackbox-c2-cap-poster.jpg",
+      "cover": 3,
+      "width": 1920,
+      "crf": 20,
+      "audio": true,
+      "speed": "Speeds as labeled"
+    },
+    "book-c1-cap": {
+      "source": "book/C1_cap.mov",
+      "src": "book-c1-cap.mp4",
+      "poster": "book-c1-cap-poster.jpg",
+      "cover": 3,
+      "width": 1920,
+      "crf": 20,
+      "audio": true,
+      "speed": "Speeds as labeled"
+    },
+    "bottle-c2-cap": {
+      "source": "bottle/C2_cap.mov",
+      "src": "bottle-c2-cap.mp4",
+      "poster": "bottle-c2-cap-poster.jpg",
+      "cover": 3,
+      "width": 1920,
+      "crf": 20,
+      "audio": true,
+      "speed": "Speeds as labeled"
+    },
+    "sponge-c1-cap": {
+      "source": "sponge/C1_cap.mov",
+      "src": "sponge-c1-cap.mp4",
+      "poster": "sponge-c1-cap-poster.jpg",
+      "cover": 3,
+      "width": 1920,
+      "crf": 20,
+      "audio": true,
+      "speed": "Speeds as labeled"
+    },
+    "sponge-c2": {
+      "source": "sponge/C2.mov",
+      "src": "sponge-c2.mp4",
+      "poster": "sponge-c2-poster.jpg",
+      "cover": 3,
+      "width": 1280,
       "speed": "2× speed"
     }
   },
@@ -340,10 +352,5 @@ window.TARO_MEDIA = {
       "description": "Without recent robot motion history, End fails to recognize that the recovery is complete. In this Book trial, the robot keeps moving right.",
       "detail": "This ablation removes motion history used to assess recovery progress; it is distinct from global failure history used for planning."
     }
-  ],
-  "chapters": [
-    9,
-    19,
-    29
   ]
 };

@@ -21,7 +21,7 @@
       <a class="wordmark" href="#" aria-label="TARO home"><img class="brand-symbol" src="taro-icon.svg" width="32" height="32" alt="">TARO<span class="brand-dot">.</span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu <span aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="Main navigation">
-        <a href="#method">Method</a><a href="#results">Results</a><a href="#recovery">Recovery</a><a href="#demos">Demos</a><a href="#comparisons">Comparisons</a>
+        <a href="#method">Method</a><a href="#results">Results</a><a href="#demos">Demos</a><a href="#comparisons">Comparisons</a>
         <span class="paper-pending nav-paper">Paper coming soon</span>
       </nav>
     </div>
@@ -41,16 +41,14 @@
       </div>
 
       <div class="hero-film">
-        <div class="film-toolbar"><span><span class="live-dot" aria-hidden="true"></span> REAL-WORLD AUTONOMOUS TRIAL</span><span>Black-box <span class="toolbar-divider">/</span> 2× speed</span></div>
+        <div class="film-toolbar"><span><span class="live-dot" aria-hidden="true"></span> REAL-WORLD AUTONOMOUS TRIAL</span><span>Black-box <span class="toolbar-divider">/</span> Annotated demo</span></div>
         <div class="hero-video-wrap">
-          <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="blackbox-c2-poster.jpg" aria-label="Black-box autonomous trial, edited autonomous trial at twice real-time speed">
-            <source src="blackbox-c2.mp4" type="video/mp4">
-            Your browser does not support embedded video. <a href="blackbox-c2.mp4">Download the trial.</a>
+          <video id="hero-video" controls autoplay muted loop playsinline preload="metadata" poster="hero-cover-poster.jpg" aria-label="Annotated Black-box autonomous trial with playback and seeking controls">
+            <source src="hero-cover.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="hero-cover.mp4">Download the trial.</a>
           </video>
-          <div class="film-note"><span class="film-note-label">BEYOND THE FIRST ATTEMPT</span><strong>One task. Three recoveries.<br>A successful fourth grasp.</strong></div>
-          <button id="hero-play" class="film-control" type="button" aria-label="Pause preview"><span aria-hidden="true">Ⅱ</span></button>
         </div>
-        <div class="film-caption"><span>Unknown center of mass. No teleoperation.</span><a href="#recovery">Follow the recovery <span aria-hidden="true">↗</span></a></div>
+        <div class="film-caption"><span>Unknown center of mass. No teleoperation.</span><a href="#demo-blackbox">Explore the task <span aria-hidden="true">↗</span></a></div>
       </div>
       <div class="hero-stats" aria-label="Research highlights">
         <div><strong>85<span>%</span></strong><p>Overall task success</p></div>
@@ -104,44 +102,95 @@
       </div>
     </section>
 
-    <section id="recovery" class="recovery-section section-pad" aria-labelledby="recovery-title">
-      <div class="container">
-        <div class="section-heading"><div><p class="section-kicker">A CLOSER LOOK / BLACK-BOX</p><h2 id="recovery-title">Remember the failure.<br><em>Refine the next move.</em></h2></div><p>The box looks the same. Its center of mass does not.<br>Follow one edited trial from the first lift to success.</p></div>
-        <div class="recovery-layout">
-          <div class="recovery-view"><video id="recovery-video" controls playsinline preload="metadata" poster="blackbox-c2-poster.jpg" aria-label="Edited Black-box C2 trial with selectable annotated recovery stages"><source src="blackbox-c2.mp4" type="video/mp4"></video><div class="recovery-caption"><span class="pill-dot"></span><span id="recovery-stage-label">Edited trial · Select a stage to explore</span><button id="restart-trial" type="button">Restart <span aria-hidden="true">↺</span></button></div></div>
-          <div class="recovery-story" aria-label="Annotated recovery stages">
-            <p class="story-intro">WHY HISTORY MATTERS</p>
-            <button class="story-step" data-time="9" type="button"><span class="story-index">01</span><span><strong>Start with a larger correction.</strong><span>The first grasp tilts. TARO moves left <em>moderately</em> before regrasping.</span><span class="plan-chip">← LEFT / MODERATELY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
-            <button class="story-step" data-time="19" type="button"><span class="story-index">02</span><span><strong>A reversal calls for a smaller move.</strong><span>The next grasp tilts in the opposite direction. The previous correction suggests overshoot.</span><span class="plan-chip">→ RIGHT / SLIGHTLY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
-            <button class="story-step" data-time="29" type="button"><span class="story-index">03</span><span><strong>Refine, then try again.</strong><span>Another tilt prompts a further small rightward correction. The fourth grasp succeeds.</span><span class="plan-chip">→ RIGHT / SLIGHTLY</span></span><span class="story-play" aria-hidden="true">↗</span></button>
-            <p class="story-source">Stage descriptions are annotations based on the recorded trial. They are not a live model-output transcript.</p>
-          </div>
-        </div>
-        <div class="history-insight"><span class="insight-mark" aria-hidden="true">↳</span><p><strong>Current touch helps choose a direction.<br>Globally consistent history helps choose the magnitude.</strong></p><p>Interpreting each failure in a fixed scene frame makes feedback comparable across changing grasp orientations.</p></div>
-      </div>
-    </section>
-
     <section id="demos" class="container section-pad" aria-labelledby="demos-title">
       <div class="section-heading"><div><p class="section-kicker">IN THE REAL WORLD</p><h2 id="demos-title">Four tasks.<br>Different ways to recover.</h2></div><p>Unexpected contact changes the plan.<br>Watch TARO find its way back to the task.</p></div>
       <div class="demo-grid">
-        <article class="demo-card" data-task="blackbox">
-          <div class="demo-media"><video controls playsinline preload="none" poster="blackbox-c2-poster.jpg" aria-label="Black-box transfer with three autonomous recovery rounds"><source src="blackbox-c2.mp4" type="video/mp4"><a href="blackbox-c2.mp4">Download Black-box trial</a></video><span class="video-badge">01 / BLACK-BOX</span></div>
-          <div class="condition-controls" aria-label="Black-box experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Black-box</h3><span class="condition-tag">Unknown center of mass</span></div><p>An unbalanced lift reveals a misplaced grasp. TARO adjusts the grasp using contact feedback. In C2, three recovery rounds lead to a successful fourth grasp.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        <article id="demo-blackbox" class="demo-card task-card" data-task="blackbox">
+          <header class="task-card-heading"><div><p class="task-index">01 / CONTACT & BALANCE</p><h3>Black-box</h3></div><p class="task-goal">Stable transfer with a hidden center of mass.</p></header>
+          <div class="task-card-content">
+            <div class="task-demo">
+              <div class="demo-media"><video controls playsinline preload="metadata" poster="blackbox-c2-cap-poster.jpg" aria-label="Black-box, C2, captioned walkthrough"><source src="blackbox-c2-cap.mp4" type="video/mp4"><a href="blackbox-c2-cap.mp4">Download Black-box trial</a></video></div>
+              <div class="condition-controls" aria-label="Black-box experimental conditions"></div>
+              <div class="clip-description"><p class="condition-description" aria-live="polite"></p><span class="clip-speed"></span></div>
+              <div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed ↗</span></div>
+            </div>
+            <div class="task-design"><p class="task-design-label">EXPERIMENT DESIGN</p><div class="task-setup-grid">
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="blackbox-prop.webp" data-title="Black-box · A hidden movable weight" aria-label="Enlarge Black-box prop"><img src="blackbox-prop.webp" width="512" height="428" loading="lazy" alt="Closed black box and its opened interior, showing a movable metal weight that controls the center of mass"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>A hidden movable weight</strong><span>An internal sliding weight changes the center of mass.</span></figcaption>
+              </figure>
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="blackbox-conditions.webp" data-title="Black-box · Five weight positions" aria-label="Enlarge Black-box conditions"><img src="blackbox-conditions.webp" width="696" height="1092" loading="lazy" alt="Black-box C1 through C5 with the internal weight progressively positioned from left to right"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>Five weight positions</strong><span>C1–C5 move the weight from left to right. The exterior stays the same.</span></figcaption>
+              </figure>
+            </div></div>
+          </div>
         </article>
-        <article class="demo-card" data-task="book">
-          <div class="demo-media"><video controls playsinline preload="none" poster="book-c4-poster.jpg" aria-label="Book insertion with autonomous recovery from jamming"><source src="book-c4.mp4" type="video/mp4"><a href="book-c4.mp4">Download Book trial</a></video><span class="video-badge">02 / BOOK</span></div>
-          <div class="condition-controls" aria-label="Book experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Book</h3><span class="condition-tag">Constrained insertion</span></div><p>Contact can block insertion under different shelf constraints. TARO adjusts the book to release the constraint and resumes insertion. In C4, it shifts left.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        <article id="demo-book" class="demo-card task-card" data-task="book">
+          <header class="task-card-heading"><div><p class="task-index">02 / CONTACT & CONSTRAINTS</p><h3>Book</h3></div><p class="task-goal">Insert a book into a constrained shelf.</p></header>
+          <div class="task-card-content">
+            <div class="task-demo">
+              <div class="demo-media"><video controls playsinline preload="metadata" poster="book-c1-cap-poster.jpg" aria-label="Book, C1, captioned walkthrough"><source src="book-c1-cap.mp4" type="video/mp4"><a href="book-c1-cap.mp4">Download Book trial</a></video></div>
+              <div class="condition-controls" aria-label="Book experimental conditions"></div>
+              <div class="clip-description"><p class="condition-description" aria-live="polite"></p><span class="clip-speed"></span></div>
+              <div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed ↗</span></div>
+            </div>
+            <div class="task-design"><p class="task-design-label">EXPERIMENT DESIGN</p><div class="task-setup-grid">
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="book-prop.webp" data-title="Book · A constrained bookshelf" aria-label="Enlarge Book prop"><img src="book-prop.webp" width="404" height="540" loading="lazy" alt="Bookshelf with neighboring upright books constraining the insertion of a horizontal book"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>A constrained bookshelf</strong><span>Neighboring books can block the insertion.</span></figcaption>
+              </figure>
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="book-conditions.webp" data-title="Book · Four shelf layouts" aria-label="Enlarge Book conditions"><img src="book-conditions.webp" width="844" height="1168" loading="lazy" alt="Book conditions C1 and C3 have neighboring books on the left, while C2 and C4 have books on the right"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>Four shelf layouts</strong><span>C1–C4 vary the side and number of neighboring books.</span></figcaption>
+              </figure>
+            </div></div>
+          </div>
         </article>
-        <article class="demo-card" data-task="bottle">
-          <div class="demo-media"><video controls playsinline preload="none" poster="bottle-c2-poster.jpg" aria-label="Bottle opening with autonomous recovery when the cap remains attached"><source src="bottle-c2.mp4" type="video/mp4"><a href="bottle-c2.mp4">Download Bottle trial</a></video><span class="video-badge">03 / BOTTLE</span></div>
-          <div class="condition-controls" aria-label="Bottle experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Bottle</h3><span class="condition-tag">Hidden attachment state</span></div><p>In the 180° setting, resistance after the first 90° twist reveals that the cap is still attached. TARO resets its grasp, twists again, and removes the cap.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        <article id="demo-bottle" class="demo-card task-card" data-task="bottle">
+          <header class="task-card-heading"><div><p class="task-index">03 / CONTACT & RESISTANCE</p><h3>Bottle</h3></div><p class="task-goal">Unscrew and remove a bottle cap.</p></header>
+          <div class="task-card-content">
+            <div class="task-demo">
+              <div class="demo-media"><video controls playsinline preload="metadata" poster="bottle-c2-cap-poster.jpg" aria-label="Bottle, C2, captioned walkthrough"><source src="bottle-c2-cap.mp4" type="video/mp4"><a href="bottle-c2-cap.mp4">Download Bottle trial</a></video></div>
+              <div class="condition-controls" aria-label="Bottle experimental conditions"></div>
+              <div class="clip-description"><p class="condition-description" aria-live="polite"></p><span class="clip-speed"></span></div>
+              <div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed ↗</span></div>
+            </div>
+            <div class="task-design"><p class="task-design-label">EXPERIMENT DESIGN</p><div class="task-setup-grid">
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="bottle-prop.webp" data-title="Bottle · A variable cap angle" aria-label="Enlarge Bottle prop"><img src="bottle-prop.webp" width="240" height="392" loading="lazy" alt="Bottle with a screw cap whose remaining twist can be set between zero and 180 degrees"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>A variable cap angle</strong><span>The remaining twist is set before each trial.</span></figcaption>
+              </figure>
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="bottle-conditions.webp" data-title="Bottle · Two trial settings" aria-label="Enlarge Bottle conditions"><img src="bottle-conditions.webp" width="260" height="1108" loading="lazy" alt="Bottle cap reference images showing C1 at 90 degrees, C2 at 180 degrees and the zero-degree open state"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>Two trial settings</strong><span>C1: 90°. C2: 180°. The 0° state is shown as a reference only.</span></figcaption>
+              </figure>
+            </div></div>
+          </div>
         </article>
-        <article class="demo-card" data-task="sponge">
-          <div class="demo-media"><video controls playsinline preload="none" poster="sponge-c3-poster.jpg" aria-label="Sponge transfer with autonomous recovery from an occluded obstacle"><source src="sponge-c3.mp4" type="video/mp4"><a href="sponge-c3.mp4">Download Sponge trial</a></video><span class="video-badge">04 / SPONGE</span></div>
-          <div class="condition-controls" aria-label="Sponge experimental conditions"></div><div class="demo-body"><p class="condition-description" aria-live="polite"></p><div class="demo-title"><h3>Sponge</h3><span class="condition-tag">Occluded obstacle</span></div><p>A paper disk occludes contact with an obstacle. Across obstacle positions, TARO detects resistance, retreats slightly, lifts the sponge, and continues moving.</p><div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed <span aria-hidden="true">↗</span></span></div></div>
+        <article id="demo-sponge" class="demo-card task-card" data-task="sponge">
+          <header class="task-card-heading"><div><p class="task-index">04 / CONTACT & OCCLUSION</p><h3>Sponge</h3></div><p class="task-goal">Transfer a sponge past a hidden obstacle.</p></header>
+          <div class="task-card-content">
+            <div class="task-demo">
+              <div class="demo-media"><video controls playsinline preload="metadata" poster="sponge-c1-cap-poster.jpg" aria-label="Sponge, C1, captioned walkthrough"><source src="sponge-c1-cap.mp4" type="video/mp4"><a href="sponge-c1-cap.mp4">Download Sponge trial</a></video></div>
+              <div class="condition-controls" aria-label="Sponge experimental conditions"></div>
+              <div class="clip-description"><p class="condition-description" aria-live="polite"></p><span class="clip-speed"></span></div>
+              <div class="demo-footer"><span class="demo-setting"></span><span class="success-tag">Task completed ↗</span></div>
+            </div>
+            <div class="task-design"><p class="task-design-label">EXPERIMENT DESIGN</p><div class="task-setup-grid">
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="sponge-prop.webp" data-title="Sponge · A disk that blocks vision" aria-label="Enlarge Sponge prop"><img src="sponge-prop.webp" width="476" height="480" loading="lazy" alt="Sponge with a paper disk deliberately occluding the obstacle from both wrist and front cameras, with example camera views"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>A disk that blocks vision</strong><span>A paper disk hides the obstacle from both cameras, making touch essential.</span></figcaption>
+              </figure>
+              <figure>
+                <button class="figure-button task-figure" type="button" data-figure="sponge-conditions.webp" data-title="Sponge · Three obstacle positions" aria-label="Enlarge Sponge conditions"><img src="sponge-conditions.webp" width="1280" height="1120" loading="lazy" alt="Revised Sponge conditions C1, C2 and C3 with the obstacle near the start, midway and near the target"><span class="enlarge-label">Enlarge ↗</span></button>
+                <figcaption><strong>Three obstacle positions</strong><span>C1–C3 place the obstacle progressively farther along the transfer path.</span></figcaption>
+              </figure>
+            </div></div>
+          </div>
         </article>
       </div>
-      <p class="media-disclosure">All 14 task demonstrations are edited autonomous TARO recordings at 2× speed, without teleoperation. Audio is omitted. Select a condition to explore its recording. <a href="#task-settings">View the experimental settings ↗</a></p>
+      <p class="media-disclosure">Each task opens with a captioned walkthrough. Select another condition to compare settings. All recordings are autonomous; playback speeds follow the in-video labels. Click any setup image to enlarge it.</p>
     </section>
 
     <section id="comparisons" class="comparison-section section-pad" aria-labelledby="comparisons-title">
@@ -165,7 +214,7 @@
         <div class="case-tabs" id="history-tabs" role="group" aria-label="Motion history ablation examples"></div>
         <div class="comparison-layout"><div class="comparison-media"><video id="history-video" controls playsinline preload="none" poster="blackbox-wo-history-poster.jpg" aria-label="Black-box without motion history"><source src="blackbox-wo-history.mp4" type="video/mp4"></video><div class="case-toolbar"><span>w/o motion history</span><span>2× speed</span></div></div><div class="case-copy" aria-live="polite"><p class="analysis-tag">END · RECOVERY TERMINATION</p><h3 id="history-title">The recovery needs a stopping point.</h3><p id="history-description"></p><span class="failure-tag">Task failed</span><p class="case-detail" id="history-detail"></p></div></div>
       </div>
-      <details id="task-settings" class="setup-details"><summary><span>Explore the experimental setup</span><span aria-hidden="true">+</span></summary><div class="setup-grid"><figure><button class="figure-button" type="button" data-figure="fig6.webp" data-title="Robot platform and tactile sensors" aria-label="Enlarge robot platform figure"><img src="fig6.webp" loading="lazy" width="1400" height="648" alt="Piper robot arm, front camera, wrist camera and paired Xense fingertip tactile sensors"></button><figcaption>Piper arm, front and wrist cameras, and tactile sensors on both fingers.</figcaption></figure><figure><button class="figure-button" type="button" data-figure="fig7.webp" data-title="Task-specific experimental conditions" aria-label="Enlarge task condition figure"><img src="fig7.webp" loading="lazy" width="3404" height="1296" alt="Black-box center-of-mass positions, bookshelf constraints, bottle angles and sponge obstacle configurations"></button><figcaption>Task-specific conditions. Bottle C3 (0°) is illustrative and excluded from reported success rates.</figcaption></figure></div></details>
+      <details id="task-settings" class="setup-details"><summary><span>Explore the robot platform</span><span aria-hidden="true">+</span></summary><div class="setup-grid platform-only"><figure><button class="figure-button" type="button" data-figure="fig6.webp" data-title="Robot platform and tactile sensors" aria-label="Enlarge robot platform figure"><img src="fig6.webp" loading="lazy" width="1400" height="648" alt="Piper robot arm, front camera, wrist camera and paired Xense fingertip tactile sensors"></button><figcaption>Piper arm, front and wrist cameras, and tactile sensors on both fingers. Task conditions are illustrated in the demo cards above.</figcaption></figure></div></details>
     </section>
 
     <section id="abstract" class="abstract-section section-pad"><div class="container abstract-layout"><div><p class="section-kicker">THE PAPER</p><h2>Abstract</h2><span class="paper-pending text-link">Paper coming soon</span></div><div class="abstract-text"><p>Tactile feedback is increasingly used to refine intended actions in contact-rich manipulation. However, unexpected disturbances in real-world environments can invalidate planned trajectories, requiring robots to understand contact failures and devise new recovery strategies.</p><p>We present TARO, a tactile-driven framework for online failure recovery. A lightweight temporal tactile descriptor discretizes continuous tactile sequences into textual contact descriptions expressed in the left finger sensor’s local coordinate frame. We leverage the fine-tuned vision-language backbone of π<sub>0.5</sub> to interpret contact failures in a global reference frame by integrating visual observations with local tactile descriptions. It then reasons over the global failure history to infer recovery strategies.</p><p>Two binary heads, Need and End, run asynchronously during physical action execution to determine whether to initiate recovery and whether the recovery is complete, respectively. This enables autonomous transitions between execution and recovery and supports online multi-round recovery. Across four real-world contact-rich manipulation tasks, TARO improves mean task success from 38.75% to 85.00% compared with a separately trained recovery baseline without tactile input, a gain of 46.25 percentage points.</p></div></div></section>
